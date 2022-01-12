@@ -41,7 +41,7 @@ pub fn get_prime_index(p: usize) -> Result<usize, String> {
         start += 2 + is_prime_vec.iter().skip(start + 2).position(|&x| x == 1).unwrap_or(p);
     }
     if is_prime_vec[p] == 1 {
-        // Ok(is_prime_vec.into_iter().take(p + 1).sum())   less than the next line with filter and count
+        // Ok(is_prime_vec.into_iter().take(p + 1).sum())   lower than the next line with filter and count
         Ok(is_prime_vec.into_iter().take(p + 1).filter(|&x| x == 1).count())
     } else {
         Err("Not a prime!".to_string())
