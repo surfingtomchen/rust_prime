@@ -37,11 +37,7 @@ pub fn get_prime_index(p: usize) -> Result<usize, String> {
     let mut start = PRIME_START;
     let sqrt = (p as f64).sqrt().floor() as usize;
     while start <= sqrt {
-        let mut each = 2 * start;
-        while each <= p {
-            is_prime_vec[each] = 0;
-            each += start;
-        }
+        (2 * start..=p).into_iter().step_by(start).for_each(|x| is_prime_vec[x] = 0);
         start += 2 + is_prime_vec.iter().skip(start + 2).position(|&x| x == 1).unwrap_or(p);
     }
     if is_prime_vec[p] == 1 {
